@@ -27,7 +27,7 @@
 | category_id        | integer | null: false |
 | status_id          | integer | null: false |
 | ship_fee_id        | integer | null: false |
-| ship_prefecture_id | integer | null: false |
+| prefecture_id      | integer | null: false |
 | ship_date_id       | integer | null: false |
 | price              | integer | null: false |
 | user               | references | foreign_key: true|
@@ -57,8 +57,8 @@
 
 | Column          | Type       | Options          |
 | --------        | ------     | -----------      |
-| user_id         | references | foreign_key: true|
-| item_id         | references | foreign_key: true|
+| user            | references | foreign_key: true|
+| item            | references | foreign_key: true|
 
 ### Association
 
