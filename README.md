@@ -11,12 +11,12 @@
 | first_name_kana       | string | null: false |
 | email                 | string | null: false |
 | encrypted_password    | string | null: false |
-| barth                 | date   | null: false |
+| birth                 | date   | null: false |
 
 ### Association
 
 - has_many :items
-- has_many :historys
+- has_many :histories
 
 ## items テーブル
 
@@ -30,12 +30,12 @@
 | ship_prefecture_id | integer | null: false |
 | ship_date_id       | integer | null: false |
 | price              | integer | null: false |
-| user_id            | references | foreign_key: true|
+| user               | references | foreign_key: true|
 
 ### Association
 
 - belongs_to :user
-- has_many :historys
+- has_one :history
 
 ## orders テーブル
 
@@ -47,13 +47,13 @@
 | address         | string  | null: false |
 | building        | string  |             |
 | phone_number    | string  | null: false |
-| history_id      | references | foreign_key: true|
+| history         | references | foreign_key: true|
 
 ### Association
 
 - belongs_to history 
 
-## historys テーブル
+## histories テーブル
 
 | Column          | Type       | Options          |
 | --------        | ------     | -----------      |
