@@ -35,24 +35,22 @@
 ### Association
 
 - belongs_to :user
-- has_one :order
 - has_many :historys
 
 ## orders テーブル
 
-| Column          | Type   | Options     |
-| --------        | ------ | ----------- |
-| post_number     | string | null: false |
-| city            | string | null: false |
-| address         | string | null: false |
-| building        | string |             |
-| phone_number    | string | null: false |
-| order_id        | references | foreign_key: true|
+| Column          | Type    | Options     |
+| --------        | ------  | ----------- |
+| post_number     | string  | null: false |
+| prefecture_id   | integer | null: false |
+| city            | string  | null: false |
+| address         | string  | null: false |
+| building        | string  |             |
+| phone_number    | string  | null: false |
 | history_id      | references | foreign_key: true|
 
 ### Association
 
-- belongs_to :item
 - belongs_to history 
 
 ## historys テーブル
