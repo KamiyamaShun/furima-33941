@@ -4,10 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :nickname, presence: true
-  validates :family_name, presence: true
-  validates :first_name, presence: true
-  validates :family_name_kana, presence: true
-  validates :first_name_kana, presence: true
+　with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' } do
+  validates :nickname
+  validates :family_name
+  validates :first_name
+  validates :family_name_kana
+  validates :first_name_kana
+ end
+
+with_option presence: true, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '英数字混合で入力してください'} do
+  validates :password
+end
+
   validates :birth, presence: true
 end
