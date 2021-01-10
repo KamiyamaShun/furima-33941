@@ -3,6 +3,9 @@ extend ActiveHash::Associations::ActiveRecordExtensions
   with_options presence: true do
     validates :name
     validates :info
+  end
+
+  with_options numericality:{greater_than: 299, less_than: 100000000, message: '半角数字で入力してください'} do
     validates :price
   end
   
