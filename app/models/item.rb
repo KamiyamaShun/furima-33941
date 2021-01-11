@@ -1,15 +1,15 @@
 class Item < ApplicationRecord
-extend ActiveHash::Associations::ActiveRecordExtensions
+  extend ActiveHash::Associations::ActiveRecordExtensions
   with_options presence: true do
     validates :name
     validates :info
     validates :image
   end
 
-  with_options numericality:{greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: '半角数字で入力してください'} do
+  with_options numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: '半角数字で入力してください' } do
     validates :price
   end
-  
+
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :status_id
