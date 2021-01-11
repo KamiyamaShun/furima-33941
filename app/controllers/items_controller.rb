@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-before_action :move_to_registration, except: :index
+before_action :move_to_top, except: :index
+before_action :authenticate_user!
 
   def index
   end
@@ -23,9 +24,9 @@ before_action :move_to_registration, except: :index
     params.require(:item).permit(:name, :info, :category_id, :status_id, :ship_fee_id, :prefecture_id, :ship_date_id, :price, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_registration
+  def move_to_top
     unless user_signed_in?
-      redirect_to new_user_registration_path
+      redirect_to root_path
     end
   end
 end
