@@ -6,7 +6,7 @@ extend ActiveHash::Associations::ActiveRecordExtensions
     validates :image
   end
 
-  with_options numericality:{greater_than: 299, less_than: 100000000, message: '半角数字で入力してください'} do
+  with_options numericality:{greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: '半角数字で入力してください'} do
     validates :price
   end
   
