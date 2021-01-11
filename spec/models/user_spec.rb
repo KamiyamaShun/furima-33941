@@ -149,7 +149,7 @@ RSpec.describe User, type: :model do
       it 'お名前（カナ）が半角英数字であれば登録できない' do
         @user.first_name_kana = 'a1'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana 全角カナ文字を使用してください")
+        expect(@user.errors.full_messages).to include('First name kana 全角カナ文字を使用してください')
       end
 
       it 'emailに＠がなければ登録できない' do
