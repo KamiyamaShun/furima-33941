@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+before_action :move_to_top, except: :index
+
   def index
   end
   
@@ -19,5 +21,11 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :info, :category_id, :status_id, :ship_fee_id, :prefecture_id, :ship_date_id, :price, :image).merge(user_id: current_user.id)
+  end
+
+  def move_to_top
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 end
