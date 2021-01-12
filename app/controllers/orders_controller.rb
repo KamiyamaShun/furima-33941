@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   end
 
   private
-  def 
-    history_params.require(:history_order).permit(:post_number, :prefecture_id, :city, :address, :building, :phone_number)
+  def history_params
+    params.require(:history_order).permit(:post_number, :prefecture_id, :city, :address, :building, :phone_number)
   end
 end
