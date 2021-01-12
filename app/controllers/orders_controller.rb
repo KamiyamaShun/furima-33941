@@ -5,12 +5,10 @@ class OrdersController < ApplicationController
 
   def index
     @history_order = HistoryOrder.new
-    # @item = Item.find(params[:item_id])
   end
 
   def create
     @history_order = HistoryOrder.new(history_params)
-    # @item = Item.find(params[:item_id])
     if @history_order.valid?
       @history_order.save
       redirect_to root_path
@@ -29,7 +27,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_root
-    
     if current_user.id == @item.user_id
       redirect_to root_path
     end
