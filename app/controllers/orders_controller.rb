@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   def index
     @history_order = HistoryOrder.new
+    @item = Item.find(params[:item_id])
   end
 
   def create
