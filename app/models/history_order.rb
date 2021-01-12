@@ -1,6 +1,6 @@
 class HistoryOrder
   include ActiveModel::Model
-  attr_accessor :post_number, :prefecture_id, :city, :address, :building, :phone_number
+  attr_accessor :post_number, :prefecture_id, :city, :address, :building, :phone_number, :user_id, :item_id
 
   with_options presence: true do
     validates :post_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "ハイフンをつけて半角数字で入力してください。"}
@@ -11,7 +11,7 @@ class HistoryOrder
   validates :prefecture_id, numericality: { other_than: 0, message: "都道府県を選んでください。" }
 
   def save
-    history = History.create(user_id: current_user.id, item_id: params[:item_id])
+    history = History.create(user_id: user_id, item_id: item_id)
     Order.create(post_number: post_number, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, history_id: history.id)
   end
 end
