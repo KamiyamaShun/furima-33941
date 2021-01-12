@@ -11,7 +11,7 @@ class HistoryOrder
   validates :prefecture_id, numericality: { other_than: 0, message: "都道府県を選んでください。" }
 
   def save
-    history = HIstory.create(user_id: current_user.id, item_id: params[:item_id])
+    history = History.create(user_id: current_user.id, item_id: params[:item_id])
     Order.create(post_number: post_number, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, history_id: history.id)
   end
 end
