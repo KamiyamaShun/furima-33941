@@ -5,12 +5,13 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     @history_order = HistoryOrder.new(history_params)
     if @history_order.valid?
       @history_order.save
       redirect_to action: :index
     else
-      render action: :new
+      render action: :index
     end
   end
 
