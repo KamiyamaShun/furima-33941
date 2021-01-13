@@ -59,6 +59,12 @@ RSpec.describe HistoryOrder, type: :model do
         expect(@history_order.errors.full_messages).to include("Phone number can't be blank")
       end
 
+      it '電話番号が12桁だと決済できない' do
+        @history_order.phone_number = '090123456789'
+        @history_order.valid?
+        expect(@history_order.errors.full_messages).to include("Phone number ハイフンを抜いて11桁以内で入力してください")
+      end
+
       it '電話番号が全角だと決済できない' do
         @history_order.phone_number = '０９０１２３４５６７８'
         @history_order.valid?
@@ -69,6 +75,18 @@ RSpec.describe HistoryOrder, type: :model do
         @history_order.token = nil
         @history_order.valid?
         expect(@history_order.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idがなければ決済できない' do
+        @history_order.user_id = nil
+        @history_order.valid?
+        expect(@history_order.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idがなければ決済できない' do
+        @history_order.item_id = nil
+        @history_order.valid?
+        expect(@history_order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

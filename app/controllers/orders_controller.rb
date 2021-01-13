@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: [:index, :create, :move_to_root]
+  before_action :set_item, only: [:index, :create]
   before_action :move_to_root, only: [:index, :create]
 
   def index
@@ -31,8 +31,10 @@ class OrdersController < ApplicationController
   end
 
   def move_to_root
-    redirect_to root_path if current_user.id == @item.user_id
+  if @item.history.present? || current_user.id == @item.user_id
+    redirect_to root_path 
   end
+end
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
