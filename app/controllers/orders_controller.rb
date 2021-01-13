@@ -9,7 +9,9 @@ class OrdersController < ApplicationController
 
   def create
     @history_order = HistoryOrder.new(history_params)
+    binding.pry
     if @history_order.valid?
+      pay_item
       @history_order.save
       redirect_to root_path
     else
@@ -19,7 +21,7 @@ class OrdersController < ApplicationController
 
   private
   def history_params
-    params.require(:history_order).permit(:post_number, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:history_order).permit(:post_number, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token], price: @item.price)
   end
 
   def set_item
@@ -30,5 +32,14 @@ class OrdersController < ApplicationController
     if current_user.id == @item.user_id
       redirect_to root_path
     end
+  end
+
+  def pay_item
+    Payjp.api_key = "sk_test_cbe4e221692eabb97c8bf5b8"
+      Payjp::Charge.create(
+        amount: history_params[:price],  
+        card: history_params[:token],    
+        currency: 'jpy'                
+      )
   end
 end
