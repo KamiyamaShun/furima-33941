@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
 
   def create
     @history_order = HistoryOrder.new(history_params)
-    binding.pry
     if @history_order.valid?
       pay_item
       @history_order.save
@@ -35,7 +34,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_cbe4e221692eabb97c8bf5b8"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: history_params[:price],  
         card: history_params[:token],    
