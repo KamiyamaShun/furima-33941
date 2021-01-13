@@ -1,6 +1,6 @@
 class HistoryOrder
   include ActiveModel::Model
-  attr_accessor :post_number, :prefecture_id, :city, :address, :building, :phone_number, :user_id, :item_id, :token, :price, :user_id, :item_id
+  attr_accessor :post_number, :prefecture_id, :city, :address, :building, :phone_number, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :post_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'ハイフンをつけて半角数字で入力してください' }

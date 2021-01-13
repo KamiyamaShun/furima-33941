@@ -10,8 +10,8 @@ RSpec.describe HistoryOrder, type: :model do
       it 'すべて入力されていれば決済できること' do
         expect(@history_order).to be_valid
       end
-      it '建物名を入力しても決済できること' do
-        @history_order.building = '品川ビル'
+      it '建物名を入力しなくてもも決済できること' do
+        @history_order.building = nil
         expect(@history_order).to be_valid
       end
     end
