@@ -9,6 +9,7 @@ class HistoryOrder
     validates :phone_number, format: {with: /\A[0-9]{11}\z/, message: "ハイフンを抜いて11桁以内で入力してください"}
     validates :token
   end
+
   validates :prefecture_id, numericality: { other_than: 1, message: "都道府県を選んでください" }
 
   def save
