@@ -88,20 +88,24 @@
       </div>
     <%end%>  
   </div>
-  <% if user_signed_in? %>
-  <div class="comment-box">
-    <%= form_with(model: [@item, @comment], local: true) do |f| %>
-      <%= f.text_area :comment ,class: "comment-text", rows: "3" %>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <%= f.submit "コメントする", class: "comment-btn" %>
+  <% unless @item.history.present? %>
+    <% if user_signed_in? %>
+    <div class="comment-box">
+      <%= form_with(model: [@item, @comment], local: true) do |f| %>
+        <%= f.text_area :comment ,class: "comment-text", rows: "3" %>
+        <p class="comment-warn">
+          相手のことを考え丁寧なコメントを心がけましょう。
+          <br>
+          不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        </p>
+        <%= f.submit "コメントする", class: "comment-btn" %>
+      <%end%>
+    </div>
+    <%else%>
+    <p class="comment-warn">＊＊コメントを投稿する場合は、新規登録もしくはログインが必要です。＊＊</p>
     <%end%>
-  </div>
   <%else%>
-  <p class="comment-warn">＊＊コメントを投稿する場合は、新規登録もしくはログインが必要です。＊＊</p>
+  <p class="comment-warn">＊＊売り切れのためコメントできません。＊＊</p>
   <%end%>
   <%#  /コメント %>
   <div class="links">
