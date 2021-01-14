@@ -22,6 +22,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one :history
+  has_many :comments
 
   belongs_to :category
   belongs_to :status

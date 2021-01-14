@@ -23,4 +23,5 @@ class User < ApplicationRecord
     validates :nickname
   end
   has_many :items
+  has_many :comments
 end
