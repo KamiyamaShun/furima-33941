@@ -88,6 +88,7 @@
       </div>
     <%end%>  
   </div>
+  <% if user_signed_in? %>
   <div class="comment-box">
     <%= form_with(model: [@item, @comment], local: true) do |f| %>
       <%= f.text_area :comment ,class: "comment-text", rows: "3" %>
@@ -97,9 +98,11 @@
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
       <%= f.submit "コメントする", class: "comment-btn" %>
-        <%# <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25" %> 
     <%end%>
   </div>
+  <%else%>
+  <p class="comment-warn">＊＊コメントを投稿する場合は、新規登録もしくはログインが必要です。＊＊</p>
+  <%end%>
   <%#  /コメント %>
   <div class="links">
     <a href="#" class="change-item-btn">
