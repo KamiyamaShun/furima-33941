@@ -139,6 +139,19 @@
 
 
 /* /商品の概要 */
+.comment-chat{
+  width: 40vw;
+  margin: 5vh 0;
+  text-align: center;
+}
+
+.chat-title{
+  text-align: left;
+  font: bold;
+  color: gray;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
 
 .comment-box {
   width: 40vw;
@@ -153,6 +166,23 @@
   padding: 10px;
   border: solid 2px #dedede;
   resize: none;
+}
+
+.comment-list{
+  margin-bottom: 20px;
+}
+
+.user-nickname{
+  display: block;
+  text-align: left;
+  font: bold;
+  padding: 5px;
+}
+
+.user-comment{
+  padding: 10px;
+  background-color: #ffffff;
+  text-align: left;
 }
 
 .comment-warn {
