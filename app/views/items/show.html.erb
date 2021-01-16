@@ -79,26 +79,28 @@
   </div>
   <%# /商品の概要 %>
   <%#  コメント %>
-  <div class="comment-chat">
+  <div class="comment-chat" >
     <p class="chat-title">コメント</p>
-    <% @comments.each do |comment| %>
-      <div class="comment-list">
-        <span class="user-nickname"><%= comment.user.nickname%></span>
-        <p class="user-comment"><%= comment.comment%></p>
-      </div>
-    <%end%>  
+      <% @comments.each do |comment| %>
+        <div class="comment-list">
+          <p class="user-nickname"><%= comment.user.nickname %></p>
+          <p class="user-comment"><%= comment.comment%></p>
+        </div>
+      <%end%>  
+    <div id="comment-list" data-id=<%= @item.id%> data-user=<%= current_user.nickname%>>
+    </div>
   </div>
   <% unless @item.history.present? %>
     <% if user_signed_in? %>
     <div class="comment-box">
-      <%= form_with(model: [@item, @comment], local: true) do |f| %>
-        <%= f.text_area :comment ,class: "comment-text", rows: "3" %>
+      <%= form_with(model: [@item, @comment], local: true, id: "form") do |f| %>
+        <%= f.text_area :comment ,class: "comment-text",id: "comment", rows: "3" %>
         <p class="comment-warn">
           相手のことを考え丁寧なコメントを心がけましょう。
           <br>
           不快な言葉遣いなどは利用制限や退会処分となることがあります。
         </p>
-        <%= f.submit "コメントする", class: "comment-btn" %>
+        <%= f.submit "コメントする", class: "comment-btn", id:"submit"%>
       <%end%>
     </div>
     <%else%>
