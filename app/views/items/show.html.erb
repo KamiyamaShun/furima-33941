@@ -87,7 +87,7 @@
           <p class="user-comment"><%= comment.comment%></p>
         </div>
       <%end%>  
-    <div id="comment-list" data-id=<%= @item.id%> data-user=<%= current_user.nickname%>>
+    <div id="comment-list" data-id=<%= @item.id%> data-user=<%= current_user.nickname if user_signed_in?%>>
     </div>
   </div>
   <% unless @item.history.present? %>
